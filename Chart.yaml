@@ -1,0 +1,26 @@
+apiVersion: v2
+name: service-a
+description: Helm Chart para Service A con Circuit Breaker y caché en Kubernetes
+version: 0.1.0
+appVersion: "latest"
+type: application
+
+maintainers:
+  - name: Jose Reynoso
+    email: reynosojose2005@gmail.com
+    url: "https://www.linkedin.com/in/jose-reynoso-52b14a236/"
+    description: "Arquitecto de sistemas en la nube, especialista en Kubernetes"
+
+sources:
+  - https://github.com/evil-cloud/resillience-poc-service-a-app
+
+keywords:
+  - fastapi
+  - python
+  - circuit-breaker
+  - redis
+  - kubernetes
+
+annotations:
+  "helm.sh/display-name": "Service A con Circuit Breaker"
+  "helm.sh/category": "Microservices"
