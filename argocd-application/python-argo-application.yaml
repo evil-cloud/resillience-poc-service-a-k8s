@@ -18,8 +18,6 @@ spec:
     namespace: circuit-breaker-app
 
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true
