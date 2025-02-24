@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "python-app.fullname" . }}
+  name: {{ include "service-a.fullname" . }}
   labels:
-    {{- include "python-app.labels" . | nindent 4 }}
+    {{- include "service-a.labels" . | nindent 4 }}
 spec:
   strategy:
     type: RollingUpdate
@@ -15,15 +15,15 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "python-app.selectorLabels" . | nindent 6 }}
+      {{- include "service-a.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       annotations:
         {{- toYaml .Values.podAnnotations | nindent 8 }}
       labels:
-        {{- include "python-app.labels" . | nindent 8 }}
+        {{- include "service-a.labels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "python-app.serviceAccountName" . }}
+      serviceAccountName: {{ include "service-a.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -36,10 +36,18 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          env:
+            - name: REDIS_HOST
+              value: "{{ .Values.env.REDIS_HOST }}"
+            - name: REDIS_PORT
+              value: "{{ .Values.env.REDIS_PORT }}"
+            - name: SERVICE_B_URL
+              value: "{{ .Values.env.SERVICE_B_URL }}"
+            - name: SERVICE_C_URL
+              value: "{{ .Values.env.SERVICE_C_URL }}"
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-

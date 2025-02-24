@@ -60,3 +60,8 @@ autoscaling:
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
 
+env:
+  REDIS_HOST: "redis-ha-haproxy"
+  REDIS_PORT: "6379"
+  SERVICE_B_URL: "http://service-b:8000/"
+  SERVICE_C_URL: "http://service-c:8000/"
