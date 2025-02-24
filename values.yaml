@@ -62,5 +62,5 @@ autoscaling:
 env:
   REDIS_HOST: "redis-ha-haproxy"
   REDIS_PORT: "6379"
-  SERVICE_B_URL: "http://service-b:8000/"
-  SERVICE_C_URL: "http://service-c:8000/"
+  SERVICE_B_URL: "http://python-svc-2-service-b:8000/"
+  SERVICE_C_URL: "http://python-svc-3-service-c:8000/"
