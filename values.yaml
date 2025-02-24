@@ -4,7 +4,7 @@ replicaCount: 3
 image:
   repository: 
   pullPolicy: IfNotPresent
-  tag:
+  tag: a94c8be4
 
 serviceAccount:
   create: true
