@@ -1,8 +1,7 @@
-namespace: circuit-breaker-app
 replicaCount: 3
 
 image:
-  repository: 
+  repository: d4rkghost47/python-circuit-svc-1
   pullPolicy: IfNotPresent
   tag: 08f38c41
 
