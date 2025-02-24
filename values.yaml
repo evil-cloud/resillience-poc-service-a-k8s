@@ -31,6 +31,23 @@ service:
   port: 8000
   targetPort: 8000
 
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: 
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    external-dns.alpha.kubernetes.io/hostname: "resillence4api.infraops.us"
+    external-dns.alpha.kubernetes.io/target: "6eb6270f-6be8-42c6-9e60-e9e7050350e5.cfargotunnel.com"
+  hosts:
+    - host: resillence4api.infraops.us
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
 podDisruptionBudget:
   enabled: true
   minAvailable: 2
