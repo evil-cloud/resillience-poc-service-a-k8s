@@ -4,6 +4,7 @@ metadata:
   name: {{ include "service-a.fullname" . }}
   labels:
     {{- include "service-a.labels" . | nindent 4 }}
+    {{- include "service-a.istioLabels" . | nindent 4 }}
 spec:
   strategy:
     type: RollingUpdate
@@ -22,6 +23,7 @@ spec:
         {{- toYaml .Values.podAnnotations | nindent 8 }}
       labels:
         {{- include "service-a.labels" . | nindent 8 }}
+        {{- include "service-a.istioLabels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ include "service-a.serviceAccountName" . }}
       securityContext:
@@ -37,17 +39,11 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
-            - name: REDIS_HOST
-              value: "{{ .Values.env.REDIS_HOST }}"
-            - name: REDIS_PORT
-              value: "{{ .Values.env.REDIS_PORT }}"
-            - name: SERVICE_B_URL
-              value: "{{ .Values.env.SERVICE_B_URL }}"
-            - name: SERVICE_C_URL
-              value: "{{ .Values.env.SERVICE_C_URL }}"
+            {{- toYaml .Values.env | nindent 12 }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+

@@ -31,7 +31,7 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
-Common labels
+Common labels (Used in all resources)
 */}}
 {{- define "service-a.labels" -}}
 helm.sh/chart: {{ include "service-a.chart" . }}
@@ -43,9 +43,18 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
-Selector labels
+Istio-specific labels (Only for Deployment, Service, and ServiceAccount)
+*/}}
+{{- define "service-a.istioLabels" -}}
+app: {{ include "service-a.fullname" . }}
+version: {{ .Values.image.tag | default .Chart.AppVersion }}
+{{- end }}
+
+{{/*
+Selector labels (Used in matchLabels for Deployment and Service)
 */}}
 {{- define "service-a.selectorLabels" -}}
+app: {{ include "service-a.fullname" . }}
 app.kubernetes.io/name: {{ include "service-a.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
@@ -60,3 +69,4 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
