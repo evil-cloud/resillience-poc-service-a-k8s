@@ -47,7 +47,7 @@ Istio-specific labels (Only for Deployment, Service, and ServiceAccount)
 */}}
 {{- define "service-a.istioLabels" -}}
 app: {{ include "service-a.fullname" . }}
-version: {{ .Values.image.tag | default .Chart.AppVersion }}
+version: {{ .Values.version | default .Chart.AppVersion }}
 {{- end }}
 
 {{/*
