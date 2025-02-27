@@ -3,7 +3,7 @@ replicaCount: 3
 image:
   repository: d4rkghost47/python-circuit-svc-1
   pullPolicy: IfNotPresent
-  tag: dd73b376
+  tag: c4c2c4cb
 
 version: v1
 
