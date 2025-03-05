@@ -31,11 +31,11 @@ ingress:
   className: nginx
   annotations:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-    external-dns.alpha.kubernetes.io/hostname: resillence4api.infraops.us
+    external-dns.alpha.kubernetes.io/hostname: resillence4v2api.infraops.us
     external-dns.alpha.kubernetes.io/target: 6eb6270f-6be8-42c6-9e60-e9e7050350e5.cfargotunnel.com
     external-dns.alpha.kubernetes.io/ttl: "60"
   hosts:
-  - host: resillence4api.infraops.us
+  - host: resillence4v2api.infraops.us
     paths:
     - path: /
       pathType: ImplementationSpecific
