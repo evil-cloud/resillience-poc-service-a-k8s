@@ -128,5 +128,5 @@ rollout:
 env:
   REDIS_HOST: redis-ha-main-haproxy
   REDIS_PORT: "6379"
-  SERVICE_B_URL: http://python-service-a:8000/
-  SERVICE_C_URL: http://python-service-b:8000/
+  SERVICE_B_URL: http://python-service-b:8000/
+  SERVICE_C_URL: http://python-service-c:8000/
